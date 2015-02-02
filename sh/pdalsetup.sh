@@ -3,10 +3,13 @@
 ### Get dependencies in place
 sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y dist-upgrade
 
-sudo apt-get install -y autoconf build-essential cmake docbook-mathml docbook-xsl libboost-dev libboost-filesystem-dev libboost-timer-dev libcgal-dev libcunit1-dev libgdal-dev libgeos++-dev libgeotiff-dev libgmp-dev libjson0-dev libjson-c-dev liblas-dev libmpfr-dev libopenscenegraph-dev libpq-dev libproj-dev libxml2-dev postgresql-server-dev-9.3 xsltproc git build-essential wget
+sudo apt-get install -y --force-yes autoconf build-essential cmake docbook-mathml docbook-xsl libboost-dev libboost-filesystem-dev libboost-timer-dev libcgal-dev libcunit1-dev libgdal-dev libgeos++-dev libgeotiff-dev libgmp-dev libjson0-dev libjson-c-dev liblas-dev libmpfr-dev libopenscenegraph-dev libpq-dev libproj-dev libxml2-dev postgresql-server-dev-9.3 xsltproc git build-essential wget 
 
 # Install postgres
-sudo apt-get install -y postgresql 
+sudo apt-get install -y --force-yes postgresql 
+
+sudo mkdir /opt/source
+
 
 ### SFCGAL and PostGIS
 
@@ -15,6 +18,7 @@ git clone https://github.com/Oslandia/SFCGAL.git
 cd SFCGAL && cmake . && make -j3 && sudo make install
 cd ..
 
+cd /opt/source
 # PostGIS
 wget http://download.osgeo.org/postgis/source/postgis-2.1.3.tar.gz
 tar -xzf postgis-2.1.3.tar.gz
@@ -24,6 +28,9 @@ cd ..
 
 ### pgRouting and PDAL
 
+
+
+cd /opt/source
 # pgRouting
 git clone https://github.com/pgRouting/pgrouting.git &&\
     cd pgrouting &&\
@@ -74,7 +81,7 @@ rm test.tmp zippertest.log
 
 
 ## continue 
-
+cd /opt/source
 
 # PDAL -- Point Cloud Abstraction Library
 git clone https://github.com/PDAL/PDAL.git pdal &&\

@@ -1,0 +1,26 @@
+Vagrant.configure("2") do |config|
+
+	name = 'norkart-wa-advokat'
+	memory = 2048
+
+	config.vm.box = '1204_64'
+	
+	
+	config.vm.provider "virtualbox" do |v|
+	  v.memory = memory
+	  v.cpus = 4
+	end
+
+	config.vm.host_name = "#{name}.local"
+  	
+	config.vm.network :forwarded_port, host: 8010, guest: 80 # Apache
+	config.vm.network :forwarded_port, host: 8181, guest: 8080 # Geoserver
+	config.vm.network :forwarded_port, host: 5131, guest: 5432 # Postgres
+
+	config.vm.provision :shell do |sh|
+	#	sh.path = "./sh/base_setup.sh"
+		sh.path = "./sh/boundless1204.sh"
+	end
+
+
+end
