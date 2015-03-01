@@ -5,17 +5,17 @@ Vagrant.configure("2") do |config|
 	config.vm.box = 'trusty_daily'
 	
 	config.vm.provider "virtualbox" do |v|
-	  v.memory = 2048
+	  v.memory = 6000
 	  v.cpus = 4
 	end
 
 	config.vm.host_name = "#{name}.local"
   	
-	config.vm.network :forwarded_port, host: 8888, guest: 80 # Apache
-	config.vm.network :forwarded_port, host: 7878, guest: 8080 # Geoserver
-	config.vm.network :forwarded_port, host: 1234, guest: 5432 # Postgresql
+	config.vm.network :forwarded_port, host: 2357, guest: 80 # Apache
+	config.vm.network :forwarded_port, host: 2346, guest: 8080 # Geoserver
+	config.vm.network :forwarded_port, host: 2346, guest: 5432 # Postgresql
 
-	config.vm.provision :shell do |sh|
-		sh.path = "./sh/pdalsetup.sh"
-	end
+	#config.vm.provision :shell do |sh|
+		#sh.path = "./sh/pdalsetup.sh"
+	#end
 end

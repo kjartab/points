@@ -1,0 +1,5 @@
+data/
+.vagrant/
+*.pyc
+config.js
+venv
