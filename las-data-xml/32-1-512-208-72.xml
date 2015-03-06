@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf8'?>
+<Pipeline version="1.0">
+    <Writer type="writers.pgpointcloud">
+    <Option name="connection">dbname='melhus' user='postgres' password='kjartan1' port=5432</Option>
+    <Option name="table">test</Option>
+    <Option name="overwrite">true</Option>
+    <Filter type="filters.chipper">
+      <Option name="capacity">400</Option>
+	    <Reader type="readers.las">
+          <Option name="filename">/vagrant/Melhus/DTM20/las-data/32-1-512-208-72.laz</Option>
+        </Reader>
+    </Filter>
+  </Writer>
+</Pipeline>

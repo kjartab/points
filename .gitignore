@@ -3,3 +3,5 @@ data/
 *.pyc
 config.js
 venv
+Melhus/
+las-data-xml/

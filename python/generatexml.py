@@ -2,7 +2,7 @@
 import xml.etree.ElementTree as ET 
 import os
 
-lidardir = '/vagrant/las-data/'
+lidardir = '/vagrant/Melhus/DTM20/las-data/'
 destdir = '/vagrant/las-data-xml/'
 
 filestoload = []
@@ -10,9 +10,9 @@ filestoload = []
 for root, dirs, filenames in os.walk(lidardir):
 	for thefile in filenames:
 		filestoload.append(thefile)
-
+print 'test'
 for fname in filestoload:
-
+    
 	tree = ET.parse('pc2pg.xml')
 	root = tree.getroot()
 	

@@ -34,4 +34,5 @@ sudo apt-get install -y -q  git \
                            libvtk6-dev \
                            gcc-multilib \
                            g++-multilib \
-                           libglew-dev
+                           libglew-dev \
+                           autoconf
