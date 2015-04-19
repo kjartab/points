@@ -12,7 +12,6 @@ for root, dirs, filenames in os.walk(lidardir):
 		filestoload.append(thefile)
 print 'test'
 for fname in filestoload:
-    
 	tree = ET.parse('pc2pg.xml')
 	root = tree.getroot()
 	

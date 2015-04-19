@@ -15,7 +15,68 @@ Vagrant.configure("2") do |config|
 	config.vm.network :forwarded_port, host: 2346, guest: 8080 # Geoserver
 	config.vm.network :forwarded_port, host: 2346, guest: 5432 # Postgresql
 
-	#config.vm.provision :shell do |sh|
-		#sh.path = "./sh/pdalsetup.sh"
-	#end
+    ppaRepos = [
+    "ppa:ubuntugis/ubuntugis-unstable",
+    ]
+    
+    pkg_cmd = ""
+    
+    dependencies = [
+        "git",
+        "build-essential",
+        "cmake ",
+        "libgeos-dev ",
+        "libgdal-dev ",
+        "libpq-dev ",
+        "python-all-dev ",
+        "python-numpy ",
+        "libproj-dev ",
+        "libtiff4-dev ",
+        "libxml2-dev ",
+        "libboost-all-dev ",
+        "libbz2-dev ",
+        "libsqlite0-dev ",
+        "libcunit1-dev ",
+        "postgresql-server-dev-9.3 ",
+        "postgresql-9.3-postgis-2.1 ",
+        "libmsgpack-dev ",
+        "libgeos++-dev ",
+        "libeigen3-dev ",
+        "libflann-dev ",
+        "libglew-dev ",
+        "libhdf5-serial-dev ",
+        "libjsoncpp-dev ",
+        "vtk6 ",
+        "libvtk6-dev ",
+        "gcc-multilib ",
+        "g++-multilib ",
+        "libglew-dev ",
+        "autoconf"
+    ];
+
+    
+    if ppaRepos.length > 0
+      ppaRepos.each { |repo| pkg_cmd << "add-apt-repository -y " << repo << " ; " }
+      pkg_cmd << "apt-get update; "
+    end
+    
+    pkg_cmd << "apt-get install -q -y -V " + dependencies.join(" ") << " ; "
+
+    config.vm.provision :shell, :inline => pkg_cmd
+    
+    config.vm.provision :shell, :inline => "echo Running startup scripts;"
+      scripts = [
+          "libgeotiff.sh",
+          "nitro.sh",
+          "hexer.sh",
+          "points2grid.sh",
+          "laszip.sh",
+          "lazperf.sh",
+          "pdal.sh",
+      ];
+      scripts.each { |script| config.vm.provision :shell, :path => "scripts/" << script }
+
+    # Automatically cd to /vagrant on 'vagrant ssh'.
+    config.vm.provision :shell, :inline => "echo \"\n\ncd /vagrant\n\" >> /home/vagrant/.bashrc"
+
 end
