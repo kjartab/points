@@ -5,3 +5,6 @@ config.js
 venv
 Melhus/
 las-data-xml/
+cloudy-dev/
+.vagrant
+/.vagrant
