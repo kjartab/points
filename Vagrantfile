@@ -72,6 +72,7 @@ Vagrant.configure("2") do |config|
           "points2grid.sh",
           "laszip.sh",
           "lazperf.sh",
+          "pg_pc.sh",
           "pdal.sh",
       ];
       scripts.each { |script| config.vm.provision :shell, :path => "scripts/" << script }
