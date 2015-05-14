@@ -7,7 +7,7 @@
     <Option name="post_sql">/vagrant/python/test.sql</Option>
     <Option name="overwrite">false</Option>
     <Filter type="filters.chipper">
-      <Option name="capacity">400</Option>
+      <Option name="capacity">200000</Option>
 	    <Reader type="readers.las">
           <Option name="filename">/vagrant/Melhus/DTM20/las-data/32-1-511-208-47.laz</Option>
 		<Option name="spatialreference">EPSG:25833</Option>

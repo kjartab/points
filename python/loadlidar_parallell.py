@@ -3,10 +3,10 @@ from subprocess import call
 import os
 import datetime
 
-rootdir = '/vagrant/las-data-xml-test'
+rootdir = '/vagrant/las-data-xml'
  
 filesToLoad = []
-loaded = 0
+
 
 startScript = datetime.datetime.now()
 print startScript.strftime("%d.%m.%y_%H:%M:%S") + ' Start loading \n'
@@ -17,16 +17,15 @@ for root, dirs, filenames in os.walk(rootdir):
         filesToLoad.append(rootdir +'/'+file)
 
 print "Files to load: " + str(len(filesToLoad)) + "\n";
-    
+
 results = 0
 
 def pdal_pipeline(file_path):
     os.system("pdal pipeline " + file_path)
-    print "loaded one file nr: " + file_path
-    
+    print "loaded file: " + file_path    
     return 1
     
-pool = Pool(16)
+pool = Pool(8)
 results = pool.map(pdal_pipeline, filesToLoad)
     
 
